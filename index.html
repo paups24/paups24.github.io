@@ -77,9 +77,9 @@
     .work-intro p { font-size: 1.1rem; color: var(--ink-mid); line-height: 1.75; }
 
     /* Featured project — full-width image left, text right */
-    .pf { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); margin-bottom: 3rem; height: 480px; background: var(--cream); overflow: hidden; }
-    .pf-img { position: relative; overflow: hidden; height: 480px; }
-    .pf-img .carousel { min-height: 480px; }
+    .pf { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); margin-bottom: 3rem; background: var(--cream); overflow: hidden; }
+    .pf-img { position: relative; overflow: hidden; min-height: 480px; }
+    .pf-img .carousel { position: absolute; inset: 0; min-height: unset; height: 100%; }
     .pf-body { padding: 4rem; display: flex; flex-direction: column; justify-content: center; }
     .pnum { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.2em; color: var(--teal); text-transform: uppercase; margin-bottom: 1.5rem; }
     .pcat { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.8rem; }
@@ -184,7 +184,7 @@
       .hero-left { padding: 7rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
       .hero-right { padding: 3rem 1.5rem 4rem; }
       .pf, .pf.reverse { grid-template-columns: 1fr; direction: ltr; }
-      .pf-img, .pf-img .carousel { min-height: 300px; height: auto; }
+      .pf-img, .pf-img .carousel { min-height: 300px; height: 300px; position: relative; }
       .pgrid, .jgrid { grid-template-columns: 1fr; }
       .pg { grid-template-columns: 1fr 1fr; }
       .about-left { border-right: none; border-bottom: 1px solid var(--rule); }
