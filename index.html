@@ -47,6 +47,8 @@
     .nav-links { display: flex; gap: 1.6rem; list-style: none; }
     .nav-links a { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
+    .lang-toggle { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); background: none; border: 1px solid var(--rule); cursor: pointer; padding: 0.28rem 0.65rem; margin-left: 1.2rem; transition: color 0.2s, border-color 0.2s; }
+    .lang-toggle:hover { color: var(--ink); border-color: var(--ink-muted); }
 
     /* ─── HERO ─── */
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
@@ -73,7 +75,7 @@
 
     /* ─── WORK ─── */
     #work { border-top: 1px solid var(--rule); }
-    .work-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; align-items: end; }
+    .work-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; align-items: center; }
     .work-intro p { font-size: 1.1rem; color: var(--ink-mid); line-height: 1.75; }
 
     /* Featured project — full-width image left, text right */
@@ -115,14 +117,14 @@
 
     /* ─── JOURNAL ─── */
     #journal { padding: 5rem 3.5rem; border-top: 1px solid var(--rule); background: var(--cream); }
-    .journal-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; }
+    .journal-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
     .journal-header .sh { margin-bottom: 0; }
-    .journal-header p { font-size: 1rem; color: var(--ink-mid); line-height: 1.7; max-width: 420px; text-align: right; }
+    .journal-header p { font-size: 1rem; color: var(--ink-mid); line-height: 1.7; text-align: left; }
 
     /* 3-card equal row */
     .jgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
     .je { background: var(--warm-white); border: 1px solid var(--rule); overflow: hidden; }
-    .je-img { width: 100%; aspect-ratio: 4/3; position: relative; overflow: hidden; }
+    .je-img { width: 100%; aspect-ratio: 3/2; position: relative; overflow: hidden; }
     .je-img .carousel { height: 100%; min-height: unset; }
     .je-body { padding: 1.6rem 1.8rem 2rem; border-top: 1px solid var(--rule); }
     .jdate { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
@@ -196,7 +198,7 @@
       .awards-strip { padding: 2.5rem 1.5rem; gap: 2rem; }
       footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
       .work-intro { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
-      .journal-header { flex-direction: column; gap: 1rem; }
+      .journal-header { grid-template-columns: 1fr; gap: 1.5rem; }
       .journal-header p { text-align: left; max-width: none; }
     }
   </style>
@@ -205,13 +207,16 @@
 
 <nav id="nav">
   <a href="#" class="nav-logo">Paulina Peña</a>
-  <ul class="nav-links">
-    <li><a href="#work" data-en="Work">Work</a></li>
-    <li><a href="#journal" data-en="Journal">Journal</a></li>
-    <li><a href="#about" data-en="About">About</a></li>
-    <li><a href="#skills" data-en="Skills">Skills</a></li>
-    <li><a href="#contact" data-en="Contact">Contact</a></li>
-  </ul>
+  <div style="display:flex;align-items:center;gap:0;">
+    <ul class="nav-links">
+      <li><a href="#work" data-en="Work" data-es="Trabajo">Work</a></li>
+      <li><a href="#journal" data-en="Journal" data-es="Diario">Journal</a></li>
+      <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
+      <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
+      <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" id="langToggle">ES</button>
+  </div>
 </nav>
 
 <!-- ══════ HERO ══════ -->
@@ -220,14 +225,16 @@
     <p class="hero-eyebrow">Visual Merchandising &amp; Retail Design</p>
     <h1 class="hero-name">Paulina<br><em>Peña</em></h1>
     <div class="hero-tags">
-      <span data-en="Retail Design">Retail Design</span>
-      <span data-en="Visual Merchandising Strategy">Visual Merchandising Strategy</span>
-      <span data-en="Store Planning &amp; Environments">Store Planning &amp; Environments</span>
-      <span data-en="Bay Area, CA">Bay Area, CA</span>
+      <span data-en="Retail Design" data-es="Retail Design">Retail Design</span>
+      <span data-en="Visual Merchandising Strategy" data-es="Visual Merchandising Strategy">Visual Merchandising Strategy</span>
+      <span data-en="Store Planning &amp; Environments" data-es="Diseño de espacios comerciales">Store Planning &amp; Environments</span>
+      <span data-en="Bay Area, CA" data-es="Bay Area, CA">Bay Area, CA</span>
     </div>
   </div>
   <div class="hero-right">
-    <p class="hero-intro">
+    <p class="hero-intro"
+      data-en="Industrial designer with <strong>over a decade of experience</strong> collaborating on visual merchandising and store design for global brands — from concept through fabrication and installation.<br><br>Previously at <strong>Levi Strauss &amp; Co.</strong> and <strong>L'Oréal México</strong>, working with brands including Levi's, Denizen, Giorgio Armani, Viktor &amp; Rolf, Kiehl's, and Ralph Lauren. Master's in Commercial &amp; Retail Design, Elisava Barcelona.<br><br>Outside of that, I make things — garments, leather goods, bags, quilts, embroidery, paper art, sashiko. The list keeps growing.<br><br>Based in the Bay Area. Open to work."
+      data-es="Diseñadora industrial con <strong>más de una década</strong> colaborando en visual merchandising y diseño de espacios comerciales para marcas globales — del concepto inicial a la fabricación e instalación.<br><br>Anteriormente en <strong>Levi Strauss &amp; Co.</strong> y <strong>L'Oréal México</strong>, trabajando con marcas como Levi's, Denizen, Giorgio Armani, Viktor &amp; Rolf, Kiehl's y Ralph Lauren. Maestría en Diseño Comercial y Retail, en Elisava Barcelona.<br><br>En paralelo, exploro otras formas creativas — construcción de prendas, diseño de patrones, trabajo de textiles, artículos de piel, bolsas, quilts, bordado, arte en papel, sashiko. La lista sigue creciendo.<br><br>Actualmente vivo en el Bay Area, CA y estoy abierta a nuevas oportunidades laborales y de colaboración.">
       Industrial designer with <strong>over a decade of experience</strong> collaborating on visual merchandising and store design for global brands — from concept through fabrication and installation.
       <br><br>
       Previously at <strong>Levi Strauss &amp; Co.</strong> and <strong>L'Oréal México</strong>, working with brands including Levi's, Denizen, Giorgio Armani, Viktor &amp; Rolf, Kiehl's, and Ralph Lauren. Master's in Commercial &amp; Retail Design, Elisava Barcelona.
@@ -237,18 +244,18 @@
       Based in the Bay Area. Open to work.
     </p>
     <div class="hero-cta">
-      <a href="#work" class="btn">View Work</a>
-      <a href="#contact" class="btn-ghost">Get in Touch</a>
+      <a href="#work" class="btn" data-en="View Work" data-es="Ver trabajo">View Work</a>
+      <a href="#contact" class="btn-ghost" data-en="Get in Touch" data-es="Contacto">Get in Touch</a>
     </div>
   </div>
 </section>
 
 <!-- ══════ WORK ══════ -->
 <section class="section" id="work">
-  <div class="sl">Selected Work</div>
+  <div class="sl" data-en="Selected Work" data-es="Trabajos">Selected Work</div>
   <div class="work-intro">
-    <div><h2 class="sh">Retail environments<br><em>from brief to build.</em></h2></div>
-    <div><p>A decade working on global brand environments — from the first brief through fabrication, installation, and everything that comes up in between. Mostly in Mexico City, across Levi's brands and L'Oréal's luxury brand roster.</p></div>
+    <div><h2 class="sh" data-en="Retail environments<br><em>from brief to build.</em>" data-es="Espacios comerciales<br><em>del brief al espacio terminado.</em>">Retail environments<br><em>from brief to build.</em></h2></div>
+    <div><p data-en="A decade working on global brand environments — from the first brief through fabrication, installation, and everything that comes up in between. Mostly in Mexico City, across Levi's brands and L'Oréal's luxury brand roster." data-es="Una década trabajando en espacios de marca globales — del brief inicial a la fabricación e instalación. Principalmente en la Ciudad de México, con las marcas de Levi's y el portafolio de marcas de lujo de L'Oréal.">A decade working on global brand environments — from the first brief through fabrication, installation, and everything that comes up in between. Mostly in Mexico City, across Levi's brands and L'Oréal's luxury brand roster.</p></div>
   </div>
 
   <!-- ── Featured 01: Levi's ── -->
@@ -279,7 +286,9 @@
       <p class="pnum">01 — Brand Environments</p>
       <p class="pcat">Global Retail Rollout</p>
       <h3 class="ptitle">Levi Strauss &amp; Co.<br><em>Brand Environments</em></h3>
-      <p class="pdesc">
+      <p class="pdesc"
+        data-en="Developed and executed physical brand environments across Mexico. Translating the global concept to the requirements of the Mexican market. Coordinated seasonal campaigns, store openings, and fixture prototyping with local vendors and suppliers, maintaining alignment with Levi's worldwide brand standards.<br><br>Managed full production cycle: materials, timelines, quality control, and store visits to verify brand integrity across Levi's, Denizen, and Levi Strauss Signature."
+        data-es="Desarrollo y ejecución de espacios a lo largo de la república mexicana — traduciendo el concepto global de la marca a los requerimientos del mercado local. Coordinación de campañas por temporada, aperturas de tienda y prototipos de mobiliario con proveedores locales, alineado con los estándares globales de Levi's.<br><br>Ciclo completo de producción: materiales, tiempos, control de calidad y visitas a tienda para verificar la integridad de marca en Levi's, Denizen y Levi Strauss Signature.">
         Developed and executed physical brand environments across Mexico. Translating the global concept to the requirements of the Mexican market. Coordinated seasonal campaigns, store openings, and fixture prototyping with local vendors and suppliers, maintaining alignment with Levi's worldwide brand standards.
         <br><br>
         Managed full production cycle: materials, timelines, quality control, and store visits to verify brand integrity across Levi's, Denizen, and Levi Strauss Signature.
@@ -327,8 +336,10 @@
     <div class="pf-body">
       <p class="pnum">02 — Visual Merchandising</p>
       <p class="pcat">Luxury Retail Environments</p>
-      <h3 class="ptitle">L'Oréal México<br><em>Luxury Brand Spaces</em></h3>
-      <p class="pdesc">
+      <h3 class="ptitle">L'Oréal México<br><em data-en="Luxury Brand Spaces" data-es="Espacios de Marcas de Lujo">Luxury Brand Spaces</em></h3>
+      <p class="pdesc"
+        data-en="Led design and implementation of shop-in-shop environments for luxury brands as well as visual merchandising campaigns for product launches across Mexico's department stores.<br><br>Managed the full production cycle — spatial concept, 3D development, custom fixture design, vendor coordination, and on-site installation.<br><br>Brands: Giorgio Armani · Viktor &amp; Rolf · Kiehl's · Ralph Lauren · Yves Saint Laurent · Biotherm · Clarisonic."
+        data-es="Diseño e implementación de espacios shop-in-shop para marcas de lujo, así como campañas de visual merchandising para lanzamientos de producto en tiendas departamentales de México.<br><br>Ciclo completo de producción — concepto espacial, desarrollo 3D, diseño de mobiliario a medida, coordinación de proveedores e instalación en sitio.<br><br>Marcas: Giorgio Armani · Viktor &amp; Rolf · Kiehl's · Ralph Lauren · Yves Saint Laurent · Biotherm · Clarisonic.">
         Led design and implementation of shop-in-shop environments for luxury brands as well as visual merchandising campaigns for product launches across Mexico's department stores.
         <br><br>
         Managed the full production cycle — spatial concept, 3D development, custom fixture design, vendor coordination, and on-site installation.
@@ -372,13 +383,13 @@
         </div>
       </div>
       <div class="pc-body">
-        <p class="pcat">Product Design</p>
-        <h3 class="ptitle">Object Studies<br><em>Sketch to Fabrication</em></h3>
-        <p class="pdesc">Self-initiated furniture and objects developed from sketch through construction documentation and fabrication. Monterrey Desk, Amsterdam Planters, Vinyl Storage Shelf, Rack &amp; Shelf, Huanacaxtle Sideboard — each taken from hand drawing to dimensioned plan to built piece.</p>
+        <p class="pcat" data-en="Product Design" data-es="Diseño de Producto">Product Design</p>
+        <h3 class="ptitle" data-en="Object Studies<br><em>Sketch to Fabrication</em>" data-es="Diseño de objetos<br><em>Del boceto a la fabricación</em>">Object Studies<br><em>Sketch to Fabrication</em></h3>
+        <p class="pdesc" data-en="Self-initiated furniture and objects developed from sketch through construction documentation and fabrication. Monterrey Desk, Amsterdam Planters, Vinyl Storage Shelf, Rack &amp; Shelf, Huanacaxtle Sideboard — each taken from hand drawing to dimensioned plan to built piece." data-es="Proyectos de mobiliario y objetos desarrollados de manera independiente — del boceto a los planos de fabricación. Escritorio Monterrey, Macetas Amsterdam, Mueble para Vinilos, Rack &amp; Shelf, Aparador Huanacaxtle — cada pieza trabajada desde el dibujo a mano hasta el objeto terminado.">Self-initiated furniture and objects developed from sketch through construction documentation and fabrication. Monterrey Desk, Amsterdam Planters, Vinyl Storage Shelf, Rack &amp; Shelf, Huanacaxtle Sideboard — each taken from hand drawing to dimensioned plan to built piece.</p>
         <div class="tags">
-          <span class="tag">Industrial Design</span>
-          <span class="tag">Technical Drawing</span>
-          <span class="tag">Fabrication</span>
+          <span class="tag" data-en="Industrial Design" data-es="Diseño Industrial">Industrial Design</span>
+          <span class="tag" data-en="Technical Drawing" data-es="Dibujo Técnico">Technical Drawing</span>
+          <span class="tag" data-en="Fabrication" data-es="Fabricación">Fabrication</span>
         </div>
       </div>
     </div>
@@ -408,14 +419,14 @@
         </div>
       </div>
       <div class="pc-body">
-        <p class="pcat">Material Exploration</p>
-        <h3 class="ptitle">Craft Practice<br><em>Material &amp; Construction</em></h3>
-        <p class="pdesc">Ongoing exploration of materials and construction — leatherwork, waxed canvas, paper art. Each piece designed and built from scratch: sketch, pattern, material selection, construction, finish. The same systematic process thinking applied to professional work.</p>
+        <p class="pcat" data-en="Material Exploration" data-es="Exploración de Materiales">Material Exploration</p>
+        <h3 class="ptitle" data-en="Craft Practice<br><em>Material &amp; Construction</em>" data-es="Exploración de Materiales<br><em>Material y Construcción</em>">Craft Practice<br><em>Material &amp; Construction</em></h3>
+        <p class="pdesc" data-en="Ongoing exploration of materials and construction — leatherwork, waxed canvas, paper art. Each piece designed and built from scratch: sketch, pattern, material selection, construction, finish. The same systematic process thinking applied to professional work." data-es="Una exploración continua de materiales y técnicas constructivas — marroquinería, lona encerada, arte en papel. Cada pieza diseñada y construida desde cero: boceto, patrón, selección de material, construcción, acabado. El mismo pensamiento sistemático del trabajo profesional.">Ongoing exploration of materials and construction — leatherwork, waxed canvas, paper art. Each piece designed and built from scratch: sketch, pattern, material selection, construction, finish. The same systematic process thinking applied to professional work.</p>
         <div class="tags">
-          <span class="tag">Leathercraft</span>
-          <span class="tag">Waxed Canvas</span>
-          <span class="tag">Paper Art</span>
-          <span class="tag">Pattern Making</span>
+          <span class="tag" data-en="Leathercraft" data-es="Marroquinería">Leathercraft</span>
+          <span class="tag" data-en="Waxed Canvas" data-es="Lona Encerada">Waxed Canvas</span>
+          <span class="tag" data-en="Paper Art" data-es="Arte en Papel">Paper Art</span>
+          <span class="tag" data-en="Pattern Making" data-es="Diseño de Patrones">Pattern Making</span>
         </div>
       </div>
     </div>
@@ -425,22 +436,22 @@
 
 <!-- ══════ PROCESS ══════ -->
 <div class="process-strip">
-  <div class="sl">How I Work</div>
-  <h2 class="sh" style="color:var(--warm-white); max-width:500px;">From creative brief<br><em style="color:rgba(250,248,245,0.5)">to built environment.</em></h2>
+  <div class="sl" data-en="How I Work" data-es="Cómo trabajo">How I Work</div>
+  <h2 class="sh" style="color:var(--warm-white); max-width:500px;" data-en="From creative brief<br><em style='color:rgba(250,248,245,0.5)'>to built environment.</em>" data-es="Del brief<br><em style='color:rgba(250,248,245,0.5)'>al espacio construido.</em>">From creative brief<br><em style="color:rgba(250,248,245,0.5)">to built environment.</em></h2>
   <div class="pg">
-    <div class="pi"><p class="pinum">01 — Strategy</p><h4>Brief &amp; Vision</h4><p>Translating brand identity and commercial objectives into clear spatial strategies. Aligning creative direction with business goals across cross-functional teams.</p></div>
-    <div class="pi"><p class="pinum">02 — Design</p><h4>Concept &amp; Development</h4><p>Developing spatial concepts from sketch through 3D documentation. Creating fixture specifications, planograms, and design kits used by installation and store teams across the country.</p></div>
-    <div class="pi"><p class="pinum">03 — Production</p><h4>Fabrication &amp; Coordination</h4><p>Coordinating vendors and timelines. Overseeing materials, budget, and quality — from prototype review to final delivery.</p></div>
-    <div class="pi"><p class="pinum">04 — Install</p><h4>Execution &amp; Alignment</h4><p>On-site store visits, prototype reviews, and leadership alignment. Ensuring global brand standards are met at every touchpoint in every market.</p></div>
+    <div class="pi"><p class="pinum" data-en="01 — Strategy" data-es="01 — Estrategia">01 — Strategy</p><h4 data-en="Brief &amp; Vision" data-es="Brief y Visión">Brief &amp; Vision</h4><p data-en="Translating brand identity and commercial objectives into clear spatial strategies. Aligning creative direction with business goals across cross-functional teams." data-es="Traducir la identidad de marca y los objetivos comerciales en estrategias espaciales claras. Alinear la dirección creativa con las metas de negocio en equipos multidisciplinarios.">Translating brand identity and commercial objectives into clear spatial strategies. Aligning creative direction with business goals across cross-functional teams.</p></div>
+    <div class="pi"><p class="pinum" data-en="02 — Design" data-es="02 — Diseño">02 — Design</p><h4 data-en="Concept &amp; Development" data-es="Concepto y Desarrollo">Concept &amp; Development</h4><p data-en="Developing spatial concepts from sketch through 3D documentation. Creating fixture specifications, planograms, and design kits used by installation and store teams across the country." data-es="Desarrollo de conceptos espaciales del boceto a la documentación 3D. Creación de especificaciones de mobiliario, planogramas y kits de diseño para los equipos de instalación y tiendas en todo el país.">Developing spatial concepts from sketch through 3D documentation. Creating fixture specifications, planograms, and design kits used by installation and store teams across the country.</p></div>
+    <div class="pi"><p class="pinum" data-en="03 — Production" data-es="03 — Producción">03 — Production</p><h4 data-en="Fabrication &amp; Coordination" data-es="Fabricación y Coordinación">Fabrication &amp; Coordination</h4><p data-en="Coordinating vendors and timelines. Overseeing materials, budget, and quality — from prototype review to final delivery." data-es="Coordinación de proveedores y tiempos de entrega. Supervisión de materiales, presupuesto y calidad — desde la revisión de prototipos hasta la entrega final.">Coordinating vendors and timelines. Overseeing materials, budget, and quality — from prototype review to final delivery.</p></div>
+    <div class="pi"><p class="pinum" data-en="04 — Install" data-es="04 — Instalación">04 — Install</p><h4 data-en="Execution &amp; Alignment" data-es="Ejecución y Alineación">Execution &amp; Alignment</h4><p data-en="On-site store visits, prototype reviews, and leadership alignment. Ensuring global brand standards are met at every touchpoint in every market." data-es="Visitas a tienda, revisión de prototipos y alineación con dirección. Asegurar que los estándares globales de marca se cumplan en cada punto de contacto y en cada mercado.">On-site store visits, prototype reviews, and leadership alignment. Ensuring global brand standards are met at every touchpoint in every market.</p></div>
   </div>
 </div>
 
 <!-- ══════ JOURNAL ══════ -->
 <section id="journal">
-  <div class="sl">Journal</div>
+  <div class="sl" data-en="Journal" data-es="Diario">Journal</div>
   <div class="journal-header">
-    <h2 class="sh">Making things.<br><em>Always.</em></h2>
-    <p>Making has always run alongside the professional work — not as a hobby, just as the other thing I do. Some of it became Cut 'N Stitch — an independent brand founded in Mexico City, producing handcrafted leather goods, bags, and garments sold at design bazaars and craft markets. Some became formal coursework at West Valley College. The list keeps growing.</p>
+    <h2 class="sh" data-en="Making things.<br><em>Always.</em>" data-es="Creando<br><em>constantemente.</em>">Making things.<br><em>Always.</em></h2>
+    <p data-en="Making has always run alongside the professional work — not as a hobby, just as the other thing I do. Some of it became Cut 'N Stitch — an independent brand founded in Mexico City, producing handcrafted leather goods, bags, and garments sold at design bazaars and craft markets. Some became formal coursework at West Valley College. The list keeps growing." data-es="La exploración creativa siempre ha continuado junto al desarrollo profesional — no solo como pasatiempo, sino como manera de crecimiento. De ahí surgió Cut 'N Stitch — una marca independiente fundada en la Ciudad de México, produciendo artículos de piel, bolsas y prendas vendidos en bazares de diseño y mercados artesanales. Después continué con estudios y nuevos retos en West Valley College.">Making has always run alongside the professional work — not as a hobby, just as the other thing I do. Some of it became Cut 'N Stitch — an independent brand founded in Mexico City, producing handcrafted leather goods, bags, and garments sold at design bazaars and craft markets. Some became formal coursework at West Valley College. The list keeps growing.</p>
   </div>
 
   <div class="jgrid">
@@ -479,10 +490,10 @@
         </div>
       </div>
       <div class="je-body">
-        <p class="jdate">2023–2025 · West Valley College, Saratoga CA</p>
-        <h3>Garment Construction<br><em>&amp; Pattern Making</em></h3>
-        <p>Formal coursework in construction, pattern making, and couture embellishment — learning the technical language of garments with the same systematic thinking applied to retail environments for a decade.</p>
-        <div class="jtags"><span class="tag">Construction</span><span class="tag">Pattern Making</span><span class="tag">Couture</span></div>
+        <p class="jdate" data-en="2023–2026 · West Valley College, Saratoga CA" data-es="2023–2026 · West Valley College, Saratoga CA">2023–2026 · West Valley College, Saratoga CA</p>
+        <h3 data-en="Garment Construction<br><em>&amp; Pattern Making</em>" data-es="Construcción de Prendas<br><em>y Diseño de Patrones</em>">Garment Construction<br><em>&amp; Pattern Making</em></h3>
+        <p data-en="Formal coursework in construction, pattern making, and couture embellishment — learning the technical language of garments with the same systematic thinking applied to retail environments for a decade." data-es="Cursos formales de construcción de prendas, diseño de patrones y bordado de alta costura — aprendiendo el lenguaje técnico de la ropa con el mismo pensamiento sistemático aplicado en el diseño de espacios comerciales.">Formal coursework in construction, pattern making, and couture embellishment — learning the technical language of garments with the same systematic thinking applied to retail environments for a decade.</p>
+        <div class="jtags"><span class="tag" data-en="Construction" data-es="Construcción">Construction</span><span class="tag" data-en="Pattern Making" data-es="Diseño de Patrones">Pattern Making</span><span class="tag">Couture</span></div>
       </div>
     </div>
 
@@ -517,10 +528,10 @@
         </div>
       </div>
       <div class="je-body">
-        <p class="jdate">2020–2022 · Cut 'N Stitch, Mexico City</p>
-        <h3>Leather, Textiles<br><em>&amp; Craft Markets</em></h3>
-        <p>An independent brand producing handcrafted leather goods, bags, and waxed canvas pouches — sold at design bazaars and craft markets in Mexico City. Developed the full process: concept, pattern making, construction, and direct sales.</p>
-        <div class="jtags"><span class="tag">Leathercraft</span><span class="tag">Textiles</span><span class="tag">Craft Markets</span></div>
+        <p class="jdate" data-en="2020–2022 · Cut 'N Stitch, Mexico City" data-es="2020–2022 · Cut 'N Stitch, Ciudad de México">2020–2022 · Cut 'N Stitch, Mexico City</p>
+        <h3 data-en="Leather, Textiles<br><em>&amp; Craft Markets</em>" data-es="Piel, Textiles<br><em>y Mercados Artesanales</em>">Leather, Textiles<br><em>&amp; Craft Markets</em></h3>
+        <p data-en="An independent brand producing handcrafted leather goods, bags, and waxed canvas pouches — sold at design bazaars and craft markets in Mexico City. Developed the full process: concept, pattern making, construction, and direct sales." data-es="Marca independiente de artículos de piel hechos a mano, bolsas y accesorios de lona encerada — vendidos en bazares de diseño y mercados artesanales en la Ciudad de México. Proceso completo: concepto, patrones, construcción y venta directa.">An independent brand producing handcrafted leather goods, bags, and waxed canvas pouches — sold at design bazaars and craft markets in Mexico City. Developed the full process: concept, pattern making, construction, and direct sales.</p>
+        <div class="jtags"><span class="tag" data-en="Leathercraft" data-es="Marroquinería">Leathercraft</span><span class="tag" data-en="Textiles" data-es="Textiles">Textiles</span><span class="tag" data-en="Craft Markets" data-es="Mercados Artesanales">Craft Markets</span></div>
       </div>
     </div>
 
@@ -550,10 +561,10 @@
         </div>
       </div>
       <div class="je-body">
-        <p class="jdate">2023–Present · Bay Area</p>
-        <h3>Quilting, Embroidery<br><em>&amp; Textile Practice</em></h3>
-        <p>Piecing and hand quilting large-scale quilts from scratch — cutting, composing, and stitching each one by hand. Alongside that, embroidery and stitch sampling as a way of understanding what fabric can do.</p>
-        <div class="jtags"><span class="tag">Quilting</span><span class="tag">Embroidery</span><span class="tag">Hand Stitching</span></div>
+        <p class="jdate" data-en="2023–Present · Bay Area" data-es="2023–Presente · Bay Area">2023–Present · Bay Area</p>
+        <h3 data-en="Quilting, Embroidery<br><em>&amp; Textile Practice</em>" data-es="Quilting, Bordado<br><em>y Práctica Textil</em>">Quilting, Embroidery<br><em>&amp; Textile Practice</em></h3>
+        <p data-en="Piecing and hand quilting large-scale quilts from scratch — cutting, composing, and stitching each one by hand. Alongside that, embroidery and stitch sampling as a way of understanding what fabric can do." data-es="Construcción de quilts a gran escala desde cero — cortando, componiendo y cosiendo cada pedazo a mano. Adicionalmente, trabajos de bordado y muestras de puntadas para comprender distintas técnicas textiles.">Piecing and hand quilting large-scale quilts from scratch — cutting, composing, and stitching each one by hand. Alongside that, embroidery and stitch sampling as a way of understanding what fabric can do.</p>
+        <div class="jtags"><span class="tag">Quilting</span><span class="tag" data-en="Embroidery" data-es="Bordado">Embroidery</span><span class="tag" data-en="Hand Stitching" data-es="Costura a Mano">Hand Stitching</span></div>
       </div>
     </div>
 
@@ -563,72 +574,72 @@
 <!-- ══════ ABOUT ══════ -->
 <div id="about">
   <div class="about-left">
-    <div class="sl">About</div>
-    <h2 class="sh">Designer.<br><em>Collaborator.</em><br>Maker.</h2>
+    <div class="sl" data-en="About" data-es="Sobre mí">About</div>
+    <h2 class="sh" data-en="Designer.<br><em>Collaborator.</em><br>Maker." data-es="Diseñadora.<br><em>Colaboradora.</em><br>Maker.">Designer.<br><em>Collaborator.</em><br>Maker.</h2>
     <div class="about-bio" style="margin-top:2.5rem;">
-      <p>I'm an industrial designer from Mexico City, with a background in retail environments and store design. For over a decade I've worked with visual merchandising and store design teams at global brands — from translating concepts and adapting them to local markets, all the way through to fabrication coordination and installation.</p>
-      <p>Most of the work I care about happens between the drawing and the finished space. The vendor calls, the material revisions, the things that don't quite work until you solve them on site. That's the part I like best.</p>
-      <p>In parallel, I make things. Garments, leather goods, bags, quilts, embroidery, paper art, sashiko — the list keeps growing. It started as a side practice and became something I take seriously. Working directly with materials keeps my understanding of construction close and honest.</p>
-      <p><strong>Detail and process matter to me</strong> — in every project, at every scale.</p>
+      <p data-en="I'm an industrial designer from Mexico City, with a background in retail environments and store design. For over a decade I've worked with visual merchandising and store design teams at global brands — from translating concepts and adapting them to local markets, all the way through to fabrication coordination and installation." data-es="Soy diseñadora industrial de la Ciudad de México. Más de una década trabajando en retail — diseño de espacios, visual merchandising, tiendas departamentales — colaborando con equipos de marcas globales desde el brief inicial hasta la apertura de tienda.">I'm an industrial designer from Mexico City, with a background in retail environments and store design. For over a decade I've worked with visual merchandising and store design teams at global brands — from translating concepts and adapting them to local markets, all the way through to fabrication coordination and installation.</p>
+      <p data-en="Most of the work I care about happens between the drawing and the finished space. The vendor calls, the material revisions, the things that don't quite work until you solve them on site. That's the part I like best." data-es="La parte del trabajo que más disfruto sucede entre el plano y el espacio terminado. Las llamadas con proveedores, los ajustes de material, las cosas que no encajan hasta que las resuelves en sitio. En paralelo, continuó la exploración creativa de distintas maneras. Construcción de prendas, artículos de piel, bolsas, quilts, bordado, arte en papel, sashiko — la lista sigue creciendo.">Most of the work I care about happens between the drawing and the finished space. The vendor calls, the material revisions, the things that don't quite work until you solve them on site. That's the part I like best.</p>
+      <p data-en="In parallel, I make things. Garments, leather goods, bags, quilts, embroidery, paper art, sashiko — the list keeps growing. It started as a side practice and became something I take seriously. Working directly with materials keeps my understanding of construction close and honest." data-es="Empezó como una práctica paralela y se convirtió en algo que tomo en serio. Trabajar directamente con materiales me mantiene honesta.">In parallel, I make things. Garments, leather goods, bags, quilts, embroidery, paper art, sashiko — the list keeps growing. It started as a side practice and became something I take seriously. Working directly with materials keeps my understanding of construction close and honest.</p>
+      <p data-en="<strong>Detail and process matter to me</strong> — in every project, at every scale." data-es="<strong>Lo que más me importa es el proceso y atención a los detalles</strong> — en cada proyecto, y a cualquier escala."><strong>Detail and process matter to me</strong> — in every project, at every scale.</p>
     </div>
   </div>
   <div class="about-right">
-    <div class="sl">Experience &amp; Education</div>
+    <div class="sl" data-en="Experience &amp; Education" data-es="Experiencia y Educación">Experience &amp; Education</div>
     <ul class="tl">
-      <li><div class="tl-date">2018–2022</div><div class="tl-body"><h4>Brand Environment Coordinator</h4><span class="org">Levi Strauss &amp; Co. — Mexico City</span><p>Developed and executed physical brand environments across Mexico. Translating the global concept to the requirements of the Mexican market. Coordinated seasonal campaigns, store openings, and fixture prototyping with local vendors, maintaining alignment with Levi's worldwide brand standards across Levi's, Denizen, and Levi Strauss Signature.</p></div></li>
-      <li><div class="tl-date">2013–2018</div><div class="tl-body"><h4>Store Design &amp; Visual Merchandising</h4><span class="org">L'Oréal México — Mexico City</span><p>Led design and implementation of shop-in-shop environments for luxury brands across Liverpool and Palacio de Hierro. Developed visual merchandising campaigns for new product launches. Managed the full production cycle — spatial concept, 3D development, custom fixture design, vendor coordination, and on-site installation. Brands: Giorgio Armani, Viktor &amp; Rolf, Kiehl's, Ralph Lauren, YSL, Biotherm.</p></div></li>
-      <li><div class="tl-date">2010–2012</div><div class="tl-body"><h4>Senior Industrial Designer</h4><span class="org">Diafrom Centro de Diseño — Mexico City</span><p>Designed and produced retail and point-of-sale environments. Client and supplier liaison, budget control, resource optimization.</p></div></li>
-      <li><div class="tl-date">2008–2010</div><div class="tl-body"><h4>Interior Design</h4><span class="org">Estudio Lofft — Mexico City</span><p>Assisted clients with space design during store visits. Managed showroom updates across seasons. Sales support.</p></div></li>
-      <li><div class="tl-date">2025</div><div class="tl-body"><h4>Construction, Pattern Making &amp; Couture</h4><span class="org">West Valley College — Saratoga, CA</span><p>Garment construction, pattern making, and couture embellishment. Continuing: draping, design fundamentals, and fundamentals of costume design.</p></div></li>
-      <li><div class="tl-date">2018</div><div class="tl-body"><h4>Diploma in Leatherwork</h4><span class="org">Cuero Workshop — Mexico City</span></div></li>
-      <li><div class="tl-date">2012–2013</div><div class="tl-body"><h4>Master's, Commercial &amp; Retail Design</h4><span class="org">Elisava School of Design — Barcelona</span><p>Specialized in retail space design and commercial experiences. Winner, Best Store Design — REC Experimental Stores 2013. Workshop in experimental visual media for retail with Studio XAG.</p></div></li>
-      <li><div class="tl-date">2005–2009</div><div class="tl-body"><h4>BFA Industrial Design</h4><span class="org">Universidad Autónoma Metropolitana — Mexico City</span><p>Best Academic Performance award.</p></div></li>
+      <li><div class="tl-date">2018–2022</div><div class="tl-body"><h4 data-en="Brand Environment Coordinator" data-es="Brand Environment Coordinator">Brand Environment Coordinator</h4><span class="org">Levi Strauss &amp; Co. — Mexico City</span><p data-en="Developed and executed physical brand environments across Mexico. Translating the global concept to the requirements of the Mexican market. Coordinated seasonal campaigns, store openings, and fixture prototyping with local vendors, maintaining alignment with Levi's worldwide brand standards across Levi's, Denizen, and Levi Strauss Signature." data-es="Desarrollo y ejecución de espacios de marca a lo largo de la república Mexicana — traduciendo el concepto global a los requerimientos del mercado local. Campañas por temporada, aperturas de tienda y prototipado de mobiliario con proveedores locales, en alineación con los estándares globales de Levi's, Denizen y Levi Strauss Signature.">Developed and executed physical brand environments across Mexico. Translating the global concept to the requirements of the Mexican market. Coordinated seasonal campaigns, store openings, and fixture prototyping with local vendors, maintaining alignment with Levi's worldwide brand standards across Levi's, Denizen, and Levi Strauss Signature.</p></div></li>
+      <li><div class="tl-date">2013–2018</div><div class="tl-body"><h4 data-en="Store Design &amp; Visual Merchandising" data-es="Store Design &amp; Visual Merchandising">Store Design &amp; Visual Merchandising</h4><span class="org">L'Oréal México — Mexico City</span><p data-en="Led design and implementation of shop-in-shop environments for luxury brands across Liverpool and Palacio de Hierro. Developed visual merchandising campaigns for new product launches. Managed the full production cycle — spatial concept, 3D development, custom fixture design, vendor coordination, and on-site installation. Brands: Giorgio Armani, Viktor &amp; Rolf, Kiehl's, Ralph Lauren, YSL, Biotherm." data-es="Diseño e implementación de espacios shop-in-shop para marcas de lujo en Liverpool y Palacio de Hierro. Campañas de visual merchandising para lanzamientos de producto. Ciclo completo de producción — concepto espacial, desarrollo 3D, mobiliario a medida, coordinación de proveedores e instalación en sitio. Marcas: Giorgio Armani, Viktor &amp; Rolf, Kiehl's, Ralph Lauren, YSL, Biotherm.">Led design and implementation of shop-in-shop environments for luxury brands across Liverpool and Palacio de Hierro. Developed visual merchandising campaigns for new product launches. Managed the full production cycle — spatial concept, 3D development, custom fixture design, vendor coordination, and on-site installation. Brands: Giorgio Armani, Viktor &amp; Rolf, Kiehl's, Ralph Lauren, YSL, Biotherm.</p></div></li>
+      <li><div class="tl-date">2010–2012</div><div class="tl-body"><h4 data-en="Senior Industrial Designer" data-es="Diseñadora Industrial Sr.">Senior Industrial Designer</h4><span class="org">Diafrom Centro de Diseño — Mexico City</span><p data-en="Designed and produced retail and point-of-sale environments. Client and supplier liaison, budget control, resource optimization." data-es="Diseño y producción de espacios de retail y punto de venta. Enlace con clientes y proveedores, control de presupuesto y optimización de recursos.">Designed and produced retail and point-of-sale environments. Client and supplier liaison, budget control, resource optimization.</p></div></li>
+      <li><div class="tl-date">2008–2010</div><div class="tl-body"><h4 data-en="Interior Design" data-es="Diseño de Interiores">Interior Design</h4><span class="org">Estudio Lofft — Mexico City</span><p data-en="Assisted clients with space design during store visits. Managed showroom updates across seasons. Sales support." data-es="Apoyo a clientes con el diseño de espacios durante visitas a tienda. Actualización del showroom por temporada. Soporte en ventas.">Assisted clients with space design during store visits. Managed showroom updates across seasons. Sales support.</p></div></li>
+      <li><div class="tl-date">2023–2026</div><div class="tl-body"><h4 data-en="Construction, Pattern Making &amp; Couture" data-es="Construcción de Prendas, Patronaje y Alta Costura">Construction, Pattern Making &amp; Couture</h4><span class="org">West Valley College — Saratoga, CA</span><p data-en="Garment construction, pattern making, and couture embellishment. Continuing: draping, design fundamentals, and fundamentals of costume design." data-es="Construcción de prendas, diseño de patrones y bordado de alta costura. En curso: drapeado, fundamentos de diseño y diseño de vestuario.">Garment construction, pattern making, and couture embellishment. Continuing: draping, design fundamentals, and fundamentals of costume design.</p></div></li>
+      <li><div class="tl-date">2018</div><div class="tl-body"><h4 data-en="Diploma in Leatherwork" data-es="Diplomado en Marroquinería">Diploma in Leatherwork</h4><span class="org">Cuero Workshop — Mexico City</span></div></li>
+      <li><div class="tl-date">2012–2013</div><div class="tl-body"><h4 data-en="Master's, Commercial &amp; Retail Design" data-es="Maestría, Diseño Comercial y Retail">Master's, Commercial &amp; Retail Design</h4><span class="org">Elisava School of Design — Barcelona</span><p data-en="Specialized in retail space design and commercial experiences. Winner, Best Store Design — REC Experimental Stores 2013. Workshop in experimental visual media for retail with Studio XAG." data-es="Especialización en diseño de espacios de retail y experiencias comerciales. Ganadora, Mejor Diseño de Tienda — REC Experimental Stores 2013. Taller de visuales y medios experimentales para retail con Studio XAG.">Specialized in retail space design and commercial experiences. Winner, Best Store Design — REC Experimental Stores 2013. Workshop in experimental visual media for retail with Studio XAG.</p></div></li>
+      <li><div class="tl-date">2005–2009</div><div class="tl-body"><h4 data-en="BFA Industrial Design" data-es="Licenciatura en Diseño Industrial">BFA Industrial Design</h4><span class="org">Universidad Autónoma Metropolitana — Mexico City</span><p data-en="Best Academic Performance award." data-es="Premio al Mejor Desempeño Académico.">Best Academic Performance award.</p></div></li>
     </ul>
   </div>
 </div>
 
 <!-- AWARDS -->
 <div class="awards-strip">
-  <p style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);min-width:80px;">Recognition</p>
-  <div class="aw"><span class="yr">2013</span><p><strong>Best Store Design — REC Experimental Stores</strong>Elisava School of Design, Barcelona</p></div>
-  <div class="aw"><span class="yr">2009</span><p><strong>Best Academic Performance Award</strong>Universidad Autónoma Metropolitana</p></div>
+  <p style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);min-width:80px;" data-en="Recognition" data-es="Reconocimientos">Recognition</p>
+  <div class="aw"><span class="yr">2013</span><p data-en="<strong>Best Store Design — REC Experimental Stores</strong>Elisava School of Design, Barcelona" data-es="<strong>Mejor Diseño de Tienda — REC Experimental Stores</strong>Elisava School of Design, Barcelona"><strong>Best Store Design — REC Experimental Stores</strong>Elisava School of Design, Barcelona</p></div>
+  <div class="aw"><span class="yr">2009</span><p data-en="<strong>Best Academic Performance Award</strong>Universidad Autónoma Metropolitana" data-es="<strong>Premio al Mejor Desempeño Académico</strong>Universidad Autónoma Metropolitana"><strong>Best Academic Performance Award</strong>Universidad Autónoma Metropolitana</p></div>
 </div>
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="sl">Capabilities</div>
+  <div class="sl" data-en="Capabilities" data-es="Habilidades">Capabilities</div>
   <div class="skills-grid">
-    <div class="sg"><h4>Retail &amp; Environments</h4><ul><li>Visual merchandising strategy</li><li>Shop-in-shop &amp; fixture design</li><li>Store planning &amp; layout</li><li>Brand standards &amp; local adaptation</li><li>Planograms &amp; manuals</li><li>Customer journey design</li></ul></div>
-    <div class="sg"><h4>Production &amp; Process</h4><ul><li>Vendor management</li><li>Production coordination</li><li>Budget management</li><li>Installation supervision</li><li>Cross-functional collaboration</li><li>Global standards &amp; local implementation</li></ul></div>
-    <div class="sg"><h4>Design &amp; Making</h4><ul><li>Technical drawing &amp; documentation</li><li>3D spatial development</li><li>Prototype &amp; sample making</li><li>Garment construction</li><li>Pattern making</li><li>Leathercraft &amp; material work</li></ul></div>
-    <div class="sg"><h4>Software &amp; Languages</h4><ul><li>SketchUp</li><li>Rhinoceros</li><li>AutoCAD (basic)</li><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Spanish (native)</li><li>English (professional)</li></ul></div>
+    <div class="sg"><h4 data-en="Retail &amp; Environments" data-es="Retail y Espacios">Retail &amp; Environments</h4><ul><li data-en="Visual merchandising strategy" data-es="Estrategia de visual merchandising">Visual merchandising strategy</li><li data-en="Shop-in-shop &amp; fixture design" data-es="Diseño de shop-in-shop y mobiliario">Shop-in-shop &amp; fixture design</li><li data-en="Store planning &amp; layout" data-es="Planeación y layout de tiendas">Store planning &amp; layout</li><li data-en="Brand standards &amp; local adaptation" data-es="Estándares de marca y adaptación local">Brand standards &amp; local adaptation</li><li data-en="Planograms &amp; manuals" data-es="Planogramas y manuales">Planograms &amp; manuals</li><li data-en="Customer journey design" data-es="Diseño de customer journey">Customer journey design</li></ul></div>
+    <div class="sg"><h4 data-en="Production &amp; Process" data-es="Producción y Proceso">Production &amp; Process</h4><ul><li data-en="Vendor management" data-es="Gestión de proveedores">Vendor management</li><li data-en="Production coordination" data-es="Coordinación de producción">Production coordination</li><li data-en="Budget management" data-es="Control de presupuesto">Budget management</li><li data-en="Installation supervision" data-es="Supervisión de instalación">Installation supervision</li><li data-en="Cross-functional collaboration" data-es="Colaboración multidisciplinaria">Cross-functional collaboration</li><li data-en="Global standards &amp; local implementation" data-es="Estándares globales e implementación local">Global standards &amp; local implementation</li></ul></div>
+    <div class="sg"><h4 data-en="Design &amp; Making" data-es="Diseño y Oficio">Design &amp; Making</h4><ul><li data-en="Technical drawing &amp; documentation" data-es="Dibujo técnico y documentación">Technical drawing &amp; documentation</li><li data-en="3D spatial development" data-es="Desarrollo espacial 3D">3D spatial development</li><li data-en="Prototype &amp; sample making" data-es="Prototipos y muestras">Prototype &amp; sample making</li><li data-en="Garment construction" data-es="Construcción de prendas">Garment construction</li><li data-en="Pattern making" data-es="Diseño de patrones">Pattern making</li><li data-en="Leathercraft &amp; material work" data-es="Marroquinería y trabajo con materiales">Leathercraft &amp; material work</li></ul></div>
+    <div class="sg"><h4 data-en="Software &amp; Languages" data-es="Software e Idiomas">Software &amp; Languages</h4><ul><li>SketchUp</li><li data-en="AutoCAD (basic)" data-es="AutoCAD (básico)">AutoCAD (basic)</li><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li data-en="Spanish (native)" data-es="Español (nativo)">Spanish (native)</li><li data-en="English (professional)" data-es="Inglés (profesional)">English (professional)</li></ul></div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div><h2 class="ch">Let's work<br><em>together.</em></h2></div>
+  <div><h2 class="ch" data-en="Let's work<br><em>together.</em>" data-es="Trabajemos<br><em>juntos.</em>">Let's work<br><em>together.</em></h2></div>
   <div class="cd">
-    <div class="ci"><span class="lbl">Email</span><a href="/cdn-cgi/l/email-protection#0169646d6d6e417160746d686f6071722f626e6c"><span class="__cf_email__" data-cfemail="81e9e4ededeec1f1e0f4ede8efe0f1f2afe2eeec">[email&#160;protected]</span></a></div>
-    <div class="ci"><span class="lbl">Portfolio</span><a href="https://paulinaps.com" target="_blank">paulinaps.com</a></div>
-    <div class="ci"><span class="lbl">Location</span><span>Bay Area, California</span></div>
-    <div class="ci"><span class="lbl">Available for</span><span>Visual merchandising · Retail design · Store planning · Environment design</span></div>
+    <div class="ci"><span class="lbl" data-en="Email" data-es="Correo">Email</span><a href="mailto:hello@paulinaps.com">hello@paulinaps.com</a></div>
+    <div class="ci"><span class="lbl" data-en="Portfolio" data-es="Portafolio">Portfolio</span><a href="https://paulinaps.com" target="_blank">paulinaps.com</a></div>
+    <div class="ci"><span class="lbl" data-en="Location" data-es="Ubicación">Location</span><span>Bay Area, California</span></div>
+    <div class="ci"><span class="lbl" data-en="Available for" data-es="Disponible para">Available for</span><span data-en="Visual merchandising · Retail design · Store planning · Environment design" data-es="Visual merchandising · Diseño de retail · Planeación de tiendas · Diseño de espacios">Visual merchandising · Retail design · Store planning · Environment design</span></div>
     <div class="ci"><span class="lbl">Social</span>
       <span style="display:flex;gap:1.5rem;margin-top:0.2rem;">
         <a href="https://www.instagram.com/cutnstitchmx" target="_blank" rel="noopener" style="color:var(--ink);font-size:1rem;text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='var(--teal)';this.style.borderColor='var(--teal)'" onmouseout="this.style.color='var(--ink)';this.style.borderColor='var(--rule)'">Instagram</a>
         <a href="https://www.linkedin.com/in/paulinaps/" target="_blank" rel="noopener" style="color:var(--ink);font-size:1rem;text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='var(--teal)';this.style.borderColor='var(--teal)'" onmouseout="this.style.color='var(--ink)';this.style.borderColor='var(--rule)'">LinkedIn</a>
       </span>
     </div>
-    <div style="margin-top:1rem;"><a href="/cdn-cgi/l/email-protection#f9919c959596b989988c95909798898ad79a9694" class="btn">Send a Message</a></div>
+    <div style="margin-top:1rem;"><a href="mailto:hello@paulinaps.com" class="btn" data-en="Send a Message" data-es="Enviar mensaje">Send a Message</a></div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 Paulina Peña — paulinaps.com</p>
-  <p>Industrial Design · Visual Merchandising · Retail Environments</p>
+  <p data-en="Industrial Design · Visual Merchandising · Retail Environments" data-es="Diseño Industrial · Visual Merchandising · Espacios de Retail">Industrial Design · Visual Merchandising · Retail Environments</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ── NAV SCROLL ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
@@ -659,4 +670,37 @@
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; io.unobserve(e.target); }
     });
-  }, { thresh
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.pf, .pc, .je, .pi, .tl li, .sg, .aw').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    io.observe(el);
+  });
+
+  // ── LANGUAGE TOGGLE ──
+  let lang = 'en';
+  const btn = document.getElementById('langToggle');
+
+  function applyLang(l) {
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + l);
+      if (!val) return;
+      if (el.tagName === 'P' || el.tagName === 'H2' || el.tagName === 'H3') {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
+    });
+    btn.textContent = l === 'en' ? 'ES' : 'EN';
+    document.documentElement.lang = l === 'en' ? 'en' : 'es';
+  }
+
+  btn.addEventListener('click', () => {
+    lang = lang === 'en' ? 'es' : 'en';
+    applyLang(lang);
+  });
+
+</script>
+</body>
+</html>
