@@ -683,7 +683,7 @@
 <section id="contact">
   <div><h2 class="ch" data-en="Let's work<br><em>together.</em>" data-es="Trabajemos<br><em>juntos.</em>">Let's work<br><em>together.</em></h2></div>
   <div class="cd">
-    <div class="ci"><span class="lbl" data-en="Email" data-es="Correo">Email</span><a href="/cdn-cgi/l/email-protection#0c64696060634c7c6d796065626d7c7f226f6361"><span class="__cf_email__" data-cfemail="b4dcd1d8d8dbf4c4d5c1d8dddad5c4c79ad7dbd9">[email&#160;protected]</span></a></div>
+    <div class="ci"><span class="lbl" data-en="Email" data-es="Correo">Email</span><a href="mailto:hello@paulinaps.com">hello@paulinaps.com</a></div>
     <div class="ci"><span class="lbl" data-en="Portfolio" data-es="Portafolio">Portfolio</span><a href="https://paulinaps.com" target="_blank">paulinaps.com</a></div>
     <div class="ci"><span class="lbl" data-en="Location" data-es="Ubicación">Location</span><span>Bay Area, California</span></div>
     <div class="ci"><span class="lbl" data-en="Available for" data-es="Disponible para">Available for</span><span data-en="Visual merchandising · Retail design · Store planning · Environment design" data-es="Visual merchandising · Diseño de retail · Planeación de tiendas · Diseño de espacios">Visual merchandising · Retail design · Store planning · Environment design</span></div>
@@ -693,7 +693,7 @@
         <a href="https://www.linkedin.com/in/paulinaps/" target="_blank" rel="noopener" style="color:var(--ink);font-size:1rem;text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='var(--teal)';this.style.borderColor='var(--teal)'" onmouseout="this.style.color='var(--ink)';this.style.borderColor='var(--rule)'">LinkedIn</a>
       </span>
     </div>
-    <div style="margin-top:1rem;"><a href="/cdn-cgi/l/email-protection#f9919c959596b989988c95909798898ad79a9694" class="btn" data-en="Send a Message" data-es="Enviar mensaje">Send a Message</a></div>
+    <div style="margin-top:1rem;"><a href="mailto:hello@paulinaps.com" class="btn" data-en="Send a Message" data-es="Enviar mensaje">Send a Message</a></div>
   </div>
 </section>
 
@@ -702,7 +702,7 @@
   <p data-en="Industrial Design · Visual Merchandising · Retail Environments" data-es="Diseño Industrial · Visual Merchandising · Espacios de Retail">Industrial Design · Visual Merchandising · Retail Environments</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ── NAV SCROLL ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
@@ -776,4 +776,16 @@
   }
 
   burger.addEventListener('click', () => {
-    const isOpen = drawer.classList.toggle(
+    const isOpen = drawer.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close drawer when a link is tapped
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeDrawer);
+  });
+
+</script>
+</body>
+</html>
