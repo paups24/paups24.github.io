@@ -50,6 +50,52 @@
     .lang-toggle { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); background: none; border: 1px solid var(--rule); cursor: pointer; padding: 0.28rem 0.65rem; margin-left: 1.2rem; transition: color 0.2s, border-color 0.2s; }
     .lang-toggle:hover { color: var(--ink); border-color: var(--ink-muted); }
 
+    /* ─── HAMBURGER ─── */
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 910; }
+    .nav-burger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer { display: none; }
+
+    @media (max-width: 900px) {
+      .nav-links, .lang-toggle { display: none; }
+      .nav-burger { display: flex; }
+      nav { padding: 1.2rem 1.5rem; }
+
+      .nav-drawer {
+        display: block;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(250,248,245,0.97);
+        backdrop-filter: blur(16px);
+        z-index: 899;
+        padding: 6rem 2.5rem 3rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        display: flex; flex-direction: column; justify-content: center; gap: 0;
+      }
+      .nav-drawer.open { transform: translateY(0); }
+      .nav-drawer ul { list-style: none; display: flex; flex-direction: column; }
+      .nav-drawer ul li { border-bottom: 1px solid var(--rule); }
+      .nav-drawer ul li a {
+        display: block; padding: 1.2rem 0;
+        font-family: var(--serif); font-size: 2rem; font-weight: 300;
+        color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+        transition: color 0.2s;
+      }
+      .nav-drawer ul li a:hover { color: var(--teal); }
+      .nav-drawer .drawer-lang {
+        margin-top: 2.5rem;
+        font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--ink-muted); background: none;
+        border: 1px solid var(--rule); cursor: pointer; padding: 0.5rem 1rem;
+        align-self: flex-start; transition: color 0.2s, border-color 0.2s;
+      }
+      .nav-drawer .drawer-lang:hover { color: var(--ink); border-color: var(--ink-muted); }
+    }
+
     /* ─── HERO ─── */
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
     .hero-left { padding: 8rem 3.5rem 5rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--rule); }
@@ -181,7 +227,6 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.2rem; }
       .hero, #about { grid-template-columns: 1fr; }
       .hero-left { padding: 7rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
       .hero-right { padding: 3rem 1.5rem 4rem; }
@@ -207,6 +252,7 @@
 
 <nav id="nav">
   <a href="#" class="nav-logo">Paulina Peña</a>
+  <!-- Desktop nav -->
   <div style="display:flex;align-items:center;gap:0;">
     <ul class="nav-links">
       <li><a href="#work" data-en="Work" data-es="Trabajo">Work</a></li>
@@ -217,7 +263,23 @@
     </ul>
     <button class="lang-toggle" id="langToggle">ES</button>
   </div>
+  <!-- Mobile burger -->
+  <button class="nav-burger" id="navBurger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="#work" data-en="Work" data-es="Trabajo">Work</a></li>
+    <li><a href="#journal" data-en="Journal" data-es="Diario">Journal</a></li>
+    <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
+    <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
+    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+  </ul>
+  <button class="drawer-lang" id="drawerLangToggle">ES</button>
+</div>
 
 <!-- ══════ HERO ══════ -->
 <section class="hero">
@@ -681,6 +743,7 @@
   // ── LANGUAGE TOGGLE ──
   let lang = 'en';
   const btn = document.getElementById('langToggle');
+  const drawerBtn = document.getElementById('drawerLangToggle');
 
   function applyLang(l) {
     document.querySelectorAll('[data-en]').forEach(el => {
@@ -692,13 +755,34 @@
         el.textContent = val;
       }
     });
-    btn.textContent = l === 'en' ? 'ES' : 'EN';
+    const label = l === 'en' ? 'ES' : 'EN';
+    btn.textContent = label;
+    drawerBtn.textContent = label;
     document.documentElement.lang = l === 'en' ? 'en' : 'es';
   }
 
-  btn.addEventListener('click', () => {
-    lang = lang === 'en' ? 'es' : 'en';
-    applyLang(lang);
+  btn.addEventListener('click', () => { lang = lang === 'en' ? 'es' : 'en'; applyLang(lang); });
+  drawerBtn.addEventListener('click', () => { lang = lang === 'en' ? 'es' : 'en'; applyLang(lang); });
+
+  // ── HAMBURGER ──
+  const burger = document.getElementById('navBurger');
+  const drawer = document.getElementById('navDrawer');
+
+  function closeDrawer() {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = drawer.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close drawer when a link is tapped
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeDrawer);
   });
 
 </script>
